@@ -1,38 +1,380 @@
+@font-face {
+  font-family: "Earth orbiter";
+  src: url("fonts/earthorbiter-webfont.woff2") format("woff2"),
+    url("fonts/earthorbiter-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// ---- Viewport
+@viewport {
+  width: device-width;
+  zoom: 1;
+}
+
+// ---- Box model reset
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
+body {
+  background: black;
+  background: #000 url("images/stars.jpg") no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  margin: 0 0 25px;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.page-content {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.particles-face {
+  z-index: 1;
+  pointer-events: none;
+  margin-top: -100px;
+  margin-bottom: -100px;
+}
+.particles-bg {
+  opacity: 0.3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.text {
+  max-width: 700px;
+  padding: 0 30px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.button-list {
+  display: flex;
+  justify-content: center;
+}
+.button-list .button {
+  margin-left: 20px;
+}
+.button {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: 2px solid #505eff;
+  background-color: #505eff;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 20px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+}
+
+.button:hover {
+  background-color: #3643d8;
+  border-color: #3643d8;
+}
+
+.button.button--secondary {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+.button.button--secondary:hover {
+  border-color: #505eff;
+  color: #505eff;
+}
+
+h1 {
+  font-family: "Earth orbiter";
+  font-weight: normal;
+  font-size: 30px;
+}
+
+/** Alerts **/
+.alert {
+  background-color: #fff;
+  text-align: left;
+  box-shadow: 0 0 25px 5px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin-bottom: 35px;
+  transition: all .3s cubic-bezier(0,0,.21,.9);
+  border-left: 5px solid rgba(0,0,0,0);
+  border-right: 5px solid #fff
+}
+
+@media (min-width: 768px) {
+  .alert {
+      border-left-width:8px
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.alert__inner {
+  padding: 13px 18px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  color: #626e84
 }
 
-.App-link {
-  color: #61dafb;
+@media (min-width: 768px) {
+  .alert__inner {
+      padding-left:25px;
+      padding-right: 25px
+  }
 }
 
-@keyframes App-logo-spin {
+.alert__content {
+  flex: 1 1 auto
+}
+
+.alert__content__inner {
+  display: flex;
+  align-items: center
+}
+
+.alert__text {
+  font-size: 14px
+}
+
+.alert__title {
+  font-weight: 700;
+  line-height: 1.2;
+  color: #3e4247;
+  margin: 0 8px 0 0
+}
+
+.alert__title strong {
+  color: #00e043;
+  font-weight: 700
+}
+
+p+.alert__title {
+  margin-top: 45px
+}
+
+.alert__description {
+  margin: 0;
+  color: #626e84
+}
+
+.alert__description,.alert__title {
+  display: inline
+}
+
+.alert__close-button {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto
+}
+
+.alert__close-button .icon-button {
+  padding: 10px;
+  margin-right: -10px
+}
+
+.alert__icon {
+  flex: 0 0 auto;
+}
+
+.alert--animate-in.alert--open {
+  animation: fadeInDown .3s cubic-bezier(0,0,.21,.9);
+  animation-fill-mode: forwards
+}
+
+.alert--closed,.alert--closing {
+  animation: fadeOut .3s cubic-bezier(0,0,.21,.9);
+  animation-fill-mode: forwards;
+  margin-top: 0;
+  margin-bottom: 0
+}
+
+.alert--icon .alert__icon {
+  font-size: 17px;
+  margin-right: 12px
+}
+
+.alert--emoji .alert__icon {
+  font-size: 25px
+}
+
+@media (min-width: 768px) {
+  .alert--emoji .alert__icon {
+      font-size:34px
+  }
+}
+
+.alert--emoji .alert__inner {
+  padding-top: 5px;
+  padding-bottom: 5px
+}
+
+.alert--image .alert__icon {
+  width: 34px
+}
+
+.alert--image .alert__icon img {
+  display: block
+}
+
+@media (min-width: 768px) {
+  .alert--image .alert__icon {
+      width:50px
+  }
+}
+
+.alert--emoji .alert__icon,.alert--image .alert__icon {
+  margin-right: 16px
+}
+
+.alert--type-success {
+  border-left-color: #00e043
+}
+
+.alert--type-success .alert__description a,.alert--type-success .alert__icon,.alert--type-success .alert__title {
+  color: #00e043
+}
+
+.alert--type-success .alert__description a:hover {
+  color: #00c73b
+}
+
+.alert--type-success .alert__description a:active {
+  color: #00942c
+}
+
+.alert--type-error {
+  border-left-color: #ff457a
+}
+
+.alert--type-error .alert__description a,.alert--type-error .alert__icon,.alert--type-error .alert__title {
+  color: #ff457a
+}
+
+.alert--type-error .alert__description a:hover {
+  color: #ff2c68
+}
+
+.alert--type-error .alert__description a:active {
+  color: #f80047
+}
+
+.alert--type-warning {
+  border-left-color: #fcbc53
+}
+
+.alert--type-warning .alert__description a,.alert--type-warning .alert__icon,.alert--type-warning .alert__title {
+  color: #fcbc53
+}
+
+.alert--type-warning .alert__description a:hover {
+  color: #fcb23a
+}
+
+.alert--type-warning .alert__description a:active {
+  color: #fb9f08
+}
+
+.alert--type-info {
+  border-left-color: #3062f3
+}
+
+.alert--type-info .alert__description a,.alert--type-info .alert__icon,.alert--type-info .alert__title {
+  color: #3062f3
+}
+
+.alert--type-info .alert__description a:hover {
+  color: #1850f2
+}
+
+.alert--type-info .alert__description a:active {
+  color: #0c3dcb
+}
+
+
+/* Loading */
+.loading-text {
+  margin-top: 15px;
+}
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+.face {
+  animation: fadeIn 5000ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
