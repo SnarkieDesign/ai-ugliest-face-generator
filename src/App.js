@@ -186,7 +186,7 @@ function App() {
       <div className="text">
         <h1>Result</h1>
         <p>Ugliest face generation complete</p>
-        <img className="face" src="images/generated-face.jpg" alt="" />
+        <img className="face" src="images/generated-face.jpg" alt="" width={382} height={386} />
       </div>
     )
   }
