@@ -145,7 +145,7 @@ function App() {
           }}
         />
         <div className="text">
-          <h1>Ugliest person generator</h1>
+          <h1>Ugliest face generator</h1>
           <p>Using advanced ai and machine-learning algorithms, this application processes <strong>billions of images</strong> of real faces. It finds the most visually upsetting facial features and composits them to form the <strong>ugliest face possible</strong>.</p>
           <button className="button" onClick={() => confirm()}>Launch processing sequence</button>
         </div>
